@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sneha Saravanan — ML / AI / Data</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    :root {
+      --accent: #2DD4BF;
+      --accent-bg: rgba(45,212,191,0.07);
+      --accent-glow: rgba(45,212,191,0.2);
+    }
+    .cursor { background: var(--accent); }
+    .cursor-ring { color: var(--accent); }
+    .back-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .hero-meta a:hover { color: var(--accent); }
+    .contact-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px var(--accent-glow); }
+    .card:hover { border-color: rgba(45,212,191,0.2); box-shadow: 0 12px 40px rgba(45,212,191,0.07); }
+    .page-tag { background: rgba(45,212,191,0.1); color: var(--accent); border: 1px solid rgba(45,212,191,0.3); }
+    .download-btn { background: var(--accent); color: #0E0C0A; box-shadow: 0 8px 24px rgba(45,212,191,0.25); }
+    .download-btn:hover { box-shadow: 0 16px 40px rgba(45,212,191,0.35); }
+
+    /* Code-style badges */
+    .tech-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem; padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(45,212,191,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(45,212,191,0.2);
+    }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
+
+    /* Stat row */
+    .stat-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+    .stat-box {
+      flex: 1; min-width: 110px;
+      padding: 1rem 1.2rem;
+      border: 1px solid rgba(45,212,191,0.15);
+      border-radius: 14px;
+      background: rgba(45,212,191,0.04);
+      text-align: center;
+    }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--accent); line-height: 1; }
+    .stat-lbl { font-size: 0.68rem; color: var(--warm-mid); margin-top: 0.3rem; line-height: 1.4; }
+
+    /* Terminal-style card header */
+    .terminal-bar {
+      display: flex; align-items: center; gap: 0.4rem;
+      margin-bottom: 1rem; padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .t-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .t-dot.r { background: #F43F5E; }
+    .t-dot.y { background: #F59E0B; }
+    .t-dot.g { background: #2DD4BF; }
+    .t-label { font-family: 'Space Mono', monospace; font-size: 0.62rem; color: var(--warm-mid); margin-left: 0.5rem; }
+
+    /* Accuracy bar */
+    .accuracy-bar {
+      margin-top: 0.6rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .bar-track {
+      flex: 1; height: 4px; border-radius: 100px;
+      background: rgba(255,255,255,0.06); overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%; border-radius: 100px;
+      background: linear-gradient(90deg, #2DD4BF, #F59E0B);
+      animation: fillBar 1.5s 0.5s both;
+    }
+    @keyframes fillBar { from { width: 0%; } }
+    .bar-pct { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--accent); white-space: nowrap; }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<canvas id="bg-canvas"></canvas>
+<div class="noise"></div>
+
+<a href="index.html" class="back-btn">← Back</a>
+
+<nav class="page-nav" id="page-nav">
+  <div class="nav-dot active" data-section="hero"></div>
+  <div class="nav-dot" data-section="experience"></div>
+  <div class="nav-dot" data-section="projects"></div>
+  <div class="nav-dot" data-section="education"></div>
+  <div class="nav-dot" data-section="skills"></div>
+  <div class="nav-dot" data-section="contact"></div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero" class="page-hero">
+    <span class="page-tag">ML · AI · Data Engineering</span>
+    <h1>Engineer<br/><em>at Scale.</em></h1>
+    <div class="hero-meta">
+      <span>📍 Pittsburgh, PA</span>
+      <a href="mailto:snehasar@andrew.cmu.edu">✉ snehasar@andrew.cmu.edu</a>
+      <a href="tel:+14123044903">📞 +1 (412) 304-4903</a>
+      <a href="https://www.linkedin.com/in/snehasaravanan09/" target="_blank">🔗 LinkedIn</a>
+      <a href="https://github.com/snehasaran09" target="_blank">💻 GitHub</a>
+      <a href="https://medium.com/@sneha.saran09" target="_blank">✍️ Medium</a>
+    </div>
+  </section>
+
+  <!-- SNAPSHOT -->
+  <section class="section observe">
+    <div class="section-label">At a Glance</div>
+    <div class="stat-row">
+      <div class="stat-box"><div class="stat-num">2+</div><div class="stat-lbl">Years in Production Systems</div></div>
+      <div class="stat-box"><div class="stat-num">92%</div><div class="stat-lbl">Forecast Accuracy Achieved</div></div>
+      <div class="stat-box"><div class="stat-num">200GB</div><div class="stat-lbl">Data Consolidated at CMU</div></div>
+      <div class="stat-box"><div class="stat-num">0</div><div class="stat-lbl">Downtime on ETL Pipelines</div></div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section observe">
+    <div class="section-label">Work Experience</div>
+
+    <div class="card">
+      <div class="terminal-bar">
+        <div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div>
+        <span class="t-label">eltropy_ml_systems.py</span>
+      </div>
+      <div class="card-header">
+        <div>
+          <div class="card-title">Software Engineer — Data & ML</div>
+          <div class="card-sub">Eltropy · Bengaluru, India</div>
+        </div>
+        <div class="card-date">Jul 2023 – Aug 2025</div>
+      </div>
+      <ul>
+        <li>Achieved <span class="metric">92%</span> forecast accuracy by spearheading a hybrid SARIMA + Prophet staffing model on AWS SageMaker monitored via CloudWatch — replacing manual workforce allocation planning for 100+ credit unions</li>
+        <li>Reached <span class="metric">89%</span> validation accuracy on production loan forecasting by deploying a 5-layer LSTM (TensorFlow) trained on 11 parameters to AWS Bedrock via a full Airflow-orchestrated ETL pipeline from S3 and Redshift</li>
+        <li>Orchestrated <span class="metric">40%</span> reduction in data quality failures by designing an automated validation framework on AWS Glue with 11 KPI checks and A/B testing across 100+ production tables before data reached downstream models</li>
+        <li>Led <span class="metric">7×</span> feature adoption growth (10 → 70+ customers) by analyzing underutilized product features via complex analytical SQL on Redshift — directly shaping roadmap prioritization decisions</li>
+        <li>Achieved <strong>zero downtime</strong> on large-scale ETL pipelines by enforcing data contracts across the AWS ecosystem using Spark and Hadoop — eliminating schema-drift failures in distributed workflows</li>
+      </ul>
+      <div class="tech-tags">
+        <span class="tech-tag">AWS SageMaker</span>
+        <span class="tech-tag">Bedrock</span>
+        <span class="tech-tag">S3</span>
+        <span class="tech-tag">Redshift</span>
+        <span class="tech-tag">Airflow</span>
+        <span class="tech-tag">TensorFlow</span>
+        <span class="tech-tag">LSTM</span>
+        <span class="tech-tag">SARIMA</span>
+        <span class="tech-tag">Prophet</span>
+        <span class="tech-tag">Spark</span>
+        <span class="tech-tag">Hadoop</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="terminal-bar">
+        <div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div>
+        <span class="t-label">cmu_research_pipelines.py</span>
+      </div>
+      <div class="card-header">
+        <div>
+          <div class="card-title">Research Assistant</div>
+          <div class="card-sub">Carnegie Mellon University · Pittsburgh, PA</div>
+        </div>
+        <div class="card-date">Oct 2025 – Present</div>
+      </div>
+      <ul>
+        <li>Delivered full analyst self-service by consolidating <span class="metric">15+</span> datasets (<span class="metric">200GB</span>) into a unified Python/SQL framework — reducing data access latency from days to minutes</li>
+        <li>Reduced data preparation time <span class="metric">~60%</span> by building reproducible ML pipelines (feature engineering, preprocessing, validation) adopted across 10+ researchers — standardizing the team's full modeling workflow</li>
+        <li>Cut pipeline failures <span class="metric">~40%</span> by implementing automated schema and drift validation with Power BI dashboards — eliminating ad-hoc data fixes and enabling team-wide self-serve reporting</li>
+      </ul>
+      <div class="tech-tags">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">SQL</span>
+        <span class="tech-tag">Power BI</span>
+        <span class="tech-tag">Drift Detection</span>
+        <span class="tech-tag">Feature Engineering</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section observe">
+    <div class="section-label">Projects</div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Movie Recommendation System</div>
+          <div class="card-sub">CMU · ML in Production</div>
+        </div>
+        <div class="card-date">2025</div>
+      </div>
+      <ul>
+        <li>Eliminated <span class="metric">60%</span> of model staleness by deploying an LLM recommendation service on Kubernetes with automated 72-hour retraining pipelines on rolling Kafka event streams</li>
+        <li>Maintained <span class="metric">99.2%</span> uptime at scale by building an MLOps observability stack (Prometheus + Grafana) tracking accuracy drift, LLM inference cost, and pipeline health — cutting incident detection from hours to under 8 minutes</li>
+        <li>Achieved <span class="metric">23%</span> LLM licensing cost reduction by running A/B testing across 1 million users, confirmed statistically significant savings (p &lt; 0.05, two-sample t-test) with &lt;0.4 point rating degradation</li>
+      </ul>
+      <div class="tech-tags">
+        <span class="tech-tag">Kubernetes</span>
+        <span class="tech-tag">Kafka</span>
+        <span class="tech-tag">Prometheus</span>
+        <span class="tech-tag">Grafana</span>
+        <span class="tech-tag">MLOps</span>
+        <span class="tech-tag">A/B Testing</span>
+        <span class="tech-tag">LLM</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">LLM-Driven Conversational Analytics & Topic Intelligence</div>
+          <div class="card-sub">CMU · AI Engineering</div>
+        </div>
+        <div class="card-date">2025</div>
+      </div>
+      <ul>
+        <li>Achieved <span class="metric">60%</span> reduction in message review time by enhancing an LLM recap system integrating Zulip ORM with 4K-context windows using Python and Groq — validated in user testing</li>
+        <li>Delivered <span class="metric">340ms</span> end-to-end latency by decoupling LLM inference from the application server via Flask and implementing cosine similarity–based topic drift detection on sentence embeddings</li>
+      </ul>
+      <div class="tech-tags">
+        <span class="tech-tag">LangChain</span>
+        <span class="tech-tag">Groq</span>
+        <span class="tech-tag">Flask</span>
+        <span class="tech-tag">Sentence Embeddings</span>
+        <span class="tech-tag">Cosine Similarity</span>
+        <span class="tech-tag">RAG</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">RedisLite — In-Memory Key-Value Store</div>
+          <div class="card-sub">C++ · Systems Programming</div>
+        </div>
+        <div class="card-date">2025</div>
+      </div>
+      <ul>
+        <li>Achieved high-throughput (<span class="metric">100K+</span> ops/sec) and low-latency (<span class="metric">&lt;1ms</span>) performance by building a Redis-like key-value store in C++ with epoll-driven concurrency and custom hash indexing</li>
+        <li>Reduced <span class="metric">35%</span> memory overhead via a custom arena allocator and optimized read-heavy workloads using shared mutex-based concurrency control with LRU caching</li>
+        <li>Ensured <span class="metric">0</span> data loss and predictable expiration via append-only persistence and min-heap TTL eviction — validated end-to-end under benchmarked load</li>
+      </ul>
+      <div class="tech-tags">
+        <span class="tech-tag">C++</span>
+        <span class="tech-tag">epoll</span>
+        <span class="tech-tag">LRU Cache</span>
+        <span class="tech-tag">Arena Allocator</span>
+        <span class="tech-tag">TTL Eviction</span>
+        <span class="tech-tag">Concurrency</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Mytorch — Custom Deep Learning Library from Scratch</div>
+          <div class="card-sub">CMU · Deep Learning</div>
+        </div>
+        <div class="card-date">2025</div>
+      </div>
+      <ul>
+        <li>Achieved <span class="metric">89%</span> phoneme classification accuracy with zero ML dependencies by building a full deep learning library from scratch in NumPy (PyTorch-inspired) — validated end-to-end on a speech recognition task</li>
+        <li>Implemented full DL stack from scratch: ReLU, Sigmoid, Tanh, GELU activations · MSE & Cross-Entropy losses · SGD & Adam optimizers · Batch Normalization — with no external frameworks</li>
+      </ul>
+      <div class="tech-tags">
+        <span class="tech-tag">NumPy</span>
+        <span class="tech-tag">Neural Networks</span>
+        <span class="tech-tag">Backpropagation</span>
+        <span class="tech-tag">Speech Recognition</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section observe">
+    <div class="section-label">Education</div>
+
+    <div class="edu-card">
+      <div class="edu-year">'26</div>
+      <div class="edu-body">
+        <div class="edu-school">Carnegie Mellon University</div>
+        <div class="edu-degree">MS Information Systems — Business Intelligence & Data Analytics · Pittsburgh, PA</div>
+        <div class="edu-courses">Machine Learning for Problem Solving · AI Engineering · Introduction to Deep Learning · Distributed Systems · Unstructured Data Analytics · Data Focused Python · Database Management · OOP with Java</div>
+      </div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-year">'24</div>
+      <div class="edu-body">
+        <div class="edu-school">PES University</div>
+        <div class="edu-degree">B.Tech Computer Science · Bengaluru, India</div>
+        <div class="edu-courses">Data Structures & Algorithms in C++ · Machine Intelligence · Operating Systems · Computer Architecture</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section observe">
+    <div class="section-label">Technical Skills</div>
+    <div class="card">
+      <div style="display:flex; flex-direction:column; gap:1.2rem;">
+        <div>
+          <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; color:var(--warm-mid); margin-bottom:0.6rem;">LANGUAGES</div>
+          <div class="skills-grid">
+            <span class="pill highlight">Python</span>
+            <span class="pill highlight">SQL</span>
+            <span class="pill">Java</span>
+            <span class="pill">C++</span>
+            <span class="pill">R</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; color:var(--warm-mid); margin-bottom:0.6rem;">ML / DL FRAMEWORKS</div>
+          <div class="skills-grid">
+            <span class="pill highlight">PyTorch</span>
+            <span class="pill highlight">TensorFlow</span>
+            <span class="pill highlight">Scikit-learn</span>
+            <span class="pill">XGBoost</span>
+            <span class="pill">Neural Networks</span>
+            <span class="pill">Drift Detection</span>
+            <span class="pill">A/B Testing</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; color:var(--warm-mid); margin-bottom:0.6rem;">LLM FRAMEWORKS</div>
+          <div class="skills-grid">
+            <span class="pill highlight">LangChain</span>
+            <span class="pill highlight">RAG</span>
+            <span class="pill highlight">PEFT</span>
+            <span class="pill">Groq</span>
+            <span class="pill">Llama</span>
+            <span class="pill">Sentence Embeddings</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; color:var(--warm-mid); margin-bottom:0.6rem;">MLOPS / INFRASTRUCTURE</div>
+          <div class="skills-grid">
+            <span class="pill highlight">AWS Bedrock</span>
+            <span class="pill highlight">SageMaker</span>
+            <span class="pill">S3 / Redshift</span>
+            <span class="pill highlight">Docker</span>
+            <span class="pill highlight">Kubernetes</span>
+            <span class="pill">Airflow</span>
+            <span class="pill">Kafka</span>
+            <span class="pill">Spark</span>
+            <span class="pill">GitHub Actions</span>
+            <span class="pill">Prometheus</span>
+            <span class="pill">MLFlow</span>
+            <span class="pill">Hadoop</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; color:var(--warm-mid); margin-bottom:0.6rem;">DATA & VISUALIZATION</div>
+          <div class="skills-grid">
+            <span class="pill">Pandas</span>
+            <span class="pill">NumPy</span>
+            <span class="pill">Plotly</span>
+            <span class="pill">Matplotlib</span>
+            <span class="pill">Seaborn</span>
+            <span class="pill">Time Series Forecasting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section observe">
+    <div class="section-label">Get In Touch</div>
+    <div class="contact-grid">
+      <a href="mailto:snehasar@andrew.cmu.edu" class="contact-card">
+        <span class="contact-icon">✉️</span>
+        <div class="contact-info">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">snehasar@andrew.cmu.edu</span>
+        </div>
+      </a>
+      <a href="tel:+14123044903" class="contact-card">
+        <span class="contact-icon">📞</span>
+        <div class="contact-info">
+          <span class="contact-label">Phone</span>
+          <span class="contact-value">+1 (412) 304-4903</span>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/snehasaravanan09/" target="_blank" class="contact-card">
+        <span class="contact-icon">🔗</span>
+        <div class="contact-info">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">snehasaravanan09</span>
+        </div>
+      </a>
+      <a href="https://github.com/snehasaran09" target="_blank" class="contact-card">
+        <span class="contact-icon">💻</span>
+        <div class="contact-info">
+          <span class="contact-label">GitHub</span>
+          <span class="contact-value">snehasaran09</span>
+        </div>
+      </a>
+      <a href="https://medium.com/@sneha.saran09" target="_blank" class="contact-card">
+        <span class="contact-icon">✍️</span>
+        <div class="contact-info">
+          <span class="contact-label">Medium</span>
+          <span class="contact-value">@sneha.saran09</span>
+        </div>
+      </a>
+    </div>
+    <a href="assets/Sneha_Saravanan_ML.pdf" download class="download-btn">
+      ⬇ Download ML / AI CV
+    </a>
+  </section>
+
+</main>
+
+<script src="js/shared.js"></script>
+<script>
+  initPage('#2DD4BF', 'rgba(45,212,191,0.1)');
+</script>
+</body>
+</html>

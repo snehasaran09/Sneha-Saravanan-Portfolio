@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sneha Saravanan — Product & Strategy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    :root {
+      --accent: #F59E0B;
+      --accent-bg: rgba(245,158,11,0.07);
+      --accent-glow: rgba(245,158,11,0.2);
+    }
+    body { --cursor-color: #F59E0B; }
+    .cursor { background: var(--accent); }
+    .cursor-ring { color: var(--accent); }
+    .back-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .hero-meta a:hover { color: var(--accent); }
+    .contact-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px var(--accent-glow); }
+    .card:hover { border-color: rgba(245,158,11,0.25); box-shadow: 0 12px 40px rgba(245,158,11,0.08); }
+    .page-tag { background: rgba(245,158,11,0.12); color: var(--accent); border: 1px solid rgba(245,158,11,0.3); }
+    .download-btn { background: var(--accent); color: #0E0C0A; box-shadow: 0 8px 24px rgba(245,158,11,0.3); }
+    .download-btn:hover { box-shadow: 0 16px 40px rgba(245,158,11,0.4); }
+
+    /* Achievement badges */
+    .achievement-row {
+      display: flex; flex-wrap: wrap; gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    .badge {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(245,158,11,0.25);
+      border-radius: 100px;
+      background: rgba(245,158,11,0.06);
+      font-size: 0.78rem; color: var(--cream);
+    }
+    .badge-icon { font-size: 1rem; }
+
+    /* Stat highlight */
+    .stat-row {
+      display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;
+    }
+    .stat-box {
+      flex: 1; min-width: 120px;
+      padding: 1rem 1.2rem;
+      border: 1px solid rgba(245,158,11,0.2);
+      border-radius: 14px;
+      background: rgba(245,158,11,0.05);
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem; color: var(--accent); line-height: 1;
+    }
+    .stat-lbl {
+      font-size: 0.7rem; color: var(--warm-mid); margin-top: 0.3rem; line-height: 1.4;
+    }
+
+    /* Hackathon card */
+    .winner-banner {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.3rem 0.8rem;
+      background: linear-gradient(90deg, #F59E0B, #F43F5E);
+      border-radius: 100px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.1em;
+      color: #0E0C0A; font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<canvas id="bg-canvas"></canvas>
+<div class="noise"></div>
+
+<a href="index.html" class="back-btn">← Back</a>
+
+<nav class="page-nav" id="page-nav">
+  <div class="nav-dot active" data-section="hero" title="Top"></div>
+  <div class="nav-dot" data-section="summary" title="Summary"></div>
+  <div class="nav-dot" data-section="experience" title="Experience"></div>
+  <div class="nav-dot" data-section="projects" title="Projects"></div>
+  <div class="nav-dot" data-section="education" title="Education"></div>
+  <div class="nav-dot" data-section="skills" title="Skills"></div>
+  <div class="nav-dot" data-section="contact" title="Contact"></div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero" class="page-hero">
+    <span class="page-tag">Product & Strategy</span>
+    <h1>Product<br/><em>Thinker.</em></h1>
+    <div class="hero-meta">
+      <span>📍 Pittsburgh, PA</span>
+      <a href="mailto:snehasar@andrew.cmu.edu">✉ snehasar@andrew.cmu.edu</a>
+      <a href="tel:+14123044903">📞 +1 (412) 304-4903</a>
+      <a href="https://www.linkedin.com/in/snehasaravanan09/" target="_blank">🔗 LinkedIn</a>
+      <a href="https://github.com/snehasaran09" target="_blank">💻 GitHub</a>
+      <a href="https://medium.com/@sneha.saran09" target="_blank">✍️ Medium</a>
+    </div>
+  </section>
+
+  <!-- SUMMARY -->
+  <section id="summary" class="section observe">
+    <div class="section-label">Professional Summary</div>
+
+    <div class="stat-row">
+      <div class="stat-box"><div class="stat-num">7×</div><div class="stat-lbl">Feature Adoption Growth</div></div>
+      <div class="stat-box"><div class="stat-num">100+</div><div class="stat-lbl">Enterprise Clients Served</div></div>
+      <div class="stat-box"><div class="stat-num">92%</div><div class="stat-lbl">Forecast Accuracy</div></div>
+      <div class="stat-box"><div class="stat-num">2M</div><div class="stat-lbl">Events/Day at Scale</div></div>
+    </div>
+
+    <div class="card">
+      <p style="font-size:0.92rem; line-height:1.8; color:rgba(245,240,232,0.85);">
+        2+ years building ML/LLM products in production — drove <strong style="color:var(--accent)">7× feature adoption</strong>, launched forecasting products used by <strong style="color:var(--accent)">100+ enterprise clients</strong> at 92% accuracy, and shipped a live recommender at 2M events/day. Carnegie Mellon University graduate student (MISM '26). Targeting Summer 2026 Product Management internships at the intersection of <strong style="color:var(--accent)">AI, data, and measurable user impact</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section observe">
+    <div class="section-label">Work Experience</div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Software Engineer — Data & ML → Product Impact</div>
+          <div class="card-sub">Eltropy · Bengaluru, India</div>
+        </div>
+        <div class="card-date">Jul 2023 – Aug 2025</div>
+      </div>
+      <ul>
+        <li>Drove <span class="metric">7×</span> feature adoption (10% → 70%) in a single product cycle by diagnosing UX friction and discoverability failures across 10 low-engagement clients, then leading end-to-end cross-functional redesign — requirements, sprint planning, and launch</li>
+        <li>Launched a <strong>workforce forecasting product</strong> serving 100+ enterprise clients at 92% accuracy by authoring the full PRD, defining success metrics, and partnering with ML to ship SARIMA + Prophet pipelines on SageMaker — directly cutting client over-hiring costs at scale</li>
+        <li>Lifted data quality scores <span class="metric">40%</span> and eliminated downstream model failures by owning product strategy for a proprietary 11-KPI validation framework with embedded A/B testing across 100+ production tables</li>
+        <li>Shipped loan payment forecasting spec achieving <span class="metric">89%</span> prediction accuracy by translating complex credit union risk and regulatory requirements into 15 model specifications — replacing manual analyst estimates and improving financial risk visibility</li>
+        <li>Restored pipeline reliability for <span class="metric">3</span> downstream product teams by authoring cross-org AWS data contract standards across Spark, Redshift, and Airflow — eliminating recurrent failures that had blocked analytics delivery</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Research Assistant</div>
+          <div class="card-sub">Carnegie Mellon University · Pittsburgh, PA</div>
+        </div>
+        <div class="card-date">Oct 2025 – Present</div>
+      </div>
+      <ul>
+        <li>Built the team's <strong>first self-service analytics platform</strong> from the ground up by consolidating fragmented research datasets into a centralized system — eliminating all ad hoc data pulls and giving stakeholders independent access for the first time</li>
+        <li>Cut data inconsistencies <span class="metric">35%</span> by designing and deploying automated Power BI reporting pipelines with embedded validation rules, replacing a fully manual QA process</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section observe">
+    <div class="section-label">Projects & Launches</div>
+
+    <div class="card">
+      <div class="winner-banner">🏆 1st Place — CMU ProdHacks AI Hackathon</div>
+      <div class="card-header">
+        <div>
+          <div class="card-title">Slack Catch Up — Conversational Intelligence Layer</div>
+          <div class="card-sub">CMU AI Product Hackathon · 30+ Teams</div>
+        </div>
+        <div class="card-date">2025</div>
+      </div>
+      <ul>
+        <li>Won CMU's AI Product Hackathon by identifying Slack AI's <strong>decision-overload gap</strong> through structured competitive analysis, then defining and shipping an MVP conversational layer that surfaces key decisions and action items</li>
+        <li>Delivered a <strong>full product spec</strong> with KPIs and roadmap targeting measurable reduction in cognitive overload — demonstrating end-to-end PM ownership from insight to launch <strong>in under 24 hours</strong></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Movie Recommendation System</div>
+          <div class="card-sub">CMU · ML in Production</div>
+        </div>
+        <div class="card-date">2025</div>
+      </div>
+      <ul>
+        <li>Slashed model staleness <span class="metric">60%</span> by shipping a Kubernetes-hosted LLM recommendation service with automated 72-hour retraining pipelines on rolling Kafka event streams — eliminating stale predictions as a user-facing bug</li>
+        <li>Maintained <span class="metric">99.2%</span> uptime at 1M+ user scale by building a full MLOps observability stack (Prometheus + Grafana) tracking accuracy drift, inference cost, and pipeline health — cutting incident detection from hours to under 8 minutes</li>
+        <li>Achieved <span class="metric">23%</span> LLM licensing cost reduction by running A/B testing across 1 million users, confirmed statistically significant savings (p &lt; 0.05, two-sample t-test) with &lt;0.4 point rating degradation</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">LLM-Driven Conversational Analytics & Topic Intelligence</div>
+          <div class="card-sub">CMU · AI Engineering</div>
+        </div>
+        <div class="card-date">2025</div>
+      </div>
+      <ul>
+        <li>Achieved <span class="metric">60%</span> reduction in message review time by enhancing an LLM recap system integrating Zulip ORM with 4K-context windows — validated in user testing</li>
+        <li>Built <span class="metric">340ms</span> end-to-end latency by decoupling LLM inference from the application server via Flask, with cosine similarity–based topic drift detection on sentence embeddings</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section observe">
+    <div class="section-label">Education</div>
+
+    <div class="edu-card">
+      <div class="edu-year">'26</div>
+      <div class="edu-body">
+        <div class="edu-school">Carnegie Mellon University</div>
+        <div class="edu-degree">MS Information Systems — Business Intelligence & Data Analytics · Pittsburgh, PA</div>
+        <div class="edu-courses">Professional Speaking · Organizational Design · Machine Learning in Production · AI Engineering · Business Writing · Data Focused Python</div>
+      </div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-year">'24</div>
+      <div class="edu-body">
+        <div class="edu-school">PES University</div>
+        <div class="edu-degree">B.Tech Computer Science · Bengaluru, India</div>
+        <div class="edu-courses">Machine Intelligence · OOP & Design · Data Structures & Algorithms · Operating Systems · Computer Architecture</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section observe">
+    <div class="section-label">Skills</div>
+    <div class="card">
+      <div style="display:flex; flex-direction:column; gap:1.2rem;">
+        <div>
+          <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; color:var(--warm-mid); margin-bottom:0.6rem;">AI / ML PRODUCT</div>
+          <div class="skills-grid">
+            <span class="pill highlight">RAG</span>
+            <span class="pill highlight">ML Optimization</span>
+            <span class="pill highlight">A/B Testing</span>
+            <span class="pill highlight">Drift Detection</span>
+            <span class="pill highlight">Model Evaluation</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; color:var(--warm-mid); margin-bottom:0.6rem;">PRODUCT MANAGEMENT</div>
+          <div class="skills-grid">
+            <span class="pill highlight">RICE Prioritization</span>
+            <span class="pill highlight">PRD Writing</span>
+            <span class="pill highlight">Roadmapping</span>
+            <span class="pill highlight">Agile / Scrum</span>
+            <span class="pill highlight">Jira & Confluence</span>
+            <span class="pill highlight">KPI Design</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; color:var(--warm-mid); margin-bottom:0.6rem;">DATA & ANALYTICS</div>
+          <div class="skills-grid">
+            <span class="pill">Python</span>
+            <span class="pill">SQL</span>
+            <span class="pill">Pandas</span>
+            <span class="pill">Power BI</span>
+            <span class="pill">Plotly</span>
+            <span class="pill">AWS QuickSight</span>
+            <span class="pill">Experiment Design</span>
+            <span class="pill">Funnel & Cohort Analysis</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; color:var(--warm-mid); margin-bottom:0.6rem;">INFRASTRUCTURE</div>
+          <div class="skills-grid">
+            <span class="pill">AWS (Bedrock, SageMaker, Redshift)</span>
+            <span class="pill">Docker</span>
+            <span class="pill">Kubernetes</span>
+            <span class="pill">Apache Airflow</span>
+            <span class="pill">Spark</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section class="section observe">
+    <div class="section-label">Achievements & Leadership</div>
+    <div class="achievement-row">
+      <div class="badge"><span class="badge-icon">🏆</span> 1st Place — CMU ProdHacks AI Product Hackathon</div>
+      <div class="badge"><span class="badge-icon">🎖</span> Best Club Award — Collegiate Social Responsibility, PES University</div>
+      <div class="badge"><span class="badge-icon">🩸</span> Led Blood Donation Drives & Rural Education (English + Computer Literacy)</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section observe">
+    <div class="section-label">Get In Touch</div>
+    <div class="contact-grid">
+      <a href="mailto:snehasar@andrew.cmu.edu" class="contact-card">
+        <span class="contact-icon">✉️</span>
+        <div class="contact-info">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">snehasar@andrew.cmu.edu</span>
+        </div>
+      </a>
+      <a href="tel:+14123044903" class="contact-card">
+        <span class="contact-icon">📞</span>
+        <div class="contact-info">
+          <span class="contact-label">Phone</span>
+          <span class="contact-value">+1 (412) 304-4903</span>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/snehasaravanan09/" target="_blank" class="contact-card">
+        <span class="contact-icon">🔗</span>
+        <div class="contact-info">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">snehasaravanan09</span>
+        </div>
+      </a>
+      <a href="https://github.com/snehasaran09" target="_blank" class="contact-card">
+        <span class="contact-icon">💻</span>
+        <div class="contact-info">
+          <span class="contact-label">GitHub</span>
+          <span class="contact-value">snehasaran09</span>
+        </div>
+      </a>
+      <a href="https://medium.com/@sneha.saran09" target="_blank" class="contact-card">
+        <span class="contact-icon">✍️</span>
+        <div class="contact-info">
+          <span class="contact-label">Medium</span>
+          <span class="contact-value">@sneha.saran09</span>
+        </div>
+      </a>
+    </div>
+    <a href="assets/Sneha_Saravanan_Product.pdf" download class="download-btn">
+      ⬇ Download Product CV
+    </a>
+  </section>
+
+</main>
+
+<script src="js/shared.js"></script>
+<script>
+  initPage('#F59E0B', 'rgba(245,158,11,0.12)');
+</script>
+</body>
+</html>

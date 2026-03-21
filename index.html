@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sneha Saravanan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #F5F0E8;
+      --ink: #1A1510;
+      --warm-mid: #8C7355;
+      --accent-teal: #2DD4BF;
+      --accent-amber: #F59E0B;
+      --accent-rose: #F43F5E;
+      --glass: rgba(245,240,232,0.06);
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      cursor: none;
+    }
+
+    /* === CUSTOM CURSOR === */
+    .cursor {
+      position: fixed; z-index: 9999;
+      width: 12px; height: 12px;
+      background: var(--accent-teal);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: transform 0.15s ease, background 0.2s;
+      transform: translate(-50%, -50%);
+    }
+    .cursor-ring {
+      position: fixed; z-index: 9998;
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--accent-teal);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: transform 0.35s ease, width 0.2s, height 0.2s, border-color 0.2s;
+      transform: translate(-50%, -50%);
+      opacity: 0.5;
+    }
+
+    /* === CANVAS BG === */
+    #bg-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+
+    /* === NOISE OVERLAY === */
+    .noise {
+      position: fixed; inset: 0; z-index: 1;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    /* === MAIN CONTAINER === */
+    #landing {
+      position: relative; z-index: 2;
+      width: 100vw; height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* === PHOTO ORB === */
+    .photo-orb {
+      position: relative;
+      width: 160px; height: 160px;
+      margin-bottom: 2.5rem;
+      animation: float 6s ease-in-out infinite;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s 0.3s, transform 0.8s 0.3s;
+    }
+    .photo-orb.visible { opacity: 1; transform: translateY(0); }
+    .photo-orb::before {
+      content: '';
+      position: absolute; inset: -6px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--accent-teal), var(--accent-amber), var(--accent-rose), var(--accent-teal));
+      animation: spin 4s linear infinite;
+      z-index: -1;
+    }
+    .photo-orb::after {
+      content: '';
+      position: absolute; inset: -12px;
+      border-radius: 50%;
+      background: conic-gradient(from 180deg, var(--accent-teal), transparent, var(--accent-rose), transparent);
+      animation: spin 8s linear infinite reverse;
+      opacity: 0.4;
+      z-index: -2;
+    }
+    .photo-orb img {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--ink);
+      position: relative; z-index: 1;
+    }
+    /* Placeholder avatar when no photo */
+    .avatar-placeholder {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2DD4BF22, #F59E0B22);
+      border: 2px solid var(--accent-teal);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      color: var(--accent-teal);
+      position: relative; z-index: 1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-16px); }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* === TEXT BLOCK === */
+    .hero-text {
+      text-align: center;
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.9s 0.5s, transform 0.9s 0.5s;
+    }
+    .hero-text.visible { opacity: 1; transform: translateY(0); }
+
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 9rem);
+      letter-spacing: 0.06em;
+      line-height: 0.9;
+      color: var(--cream);
+      text-shadow: 0 0 60px rgba(45,212,191,0.15);
+    }
+    .hero-name span {
+      display: block;
+      background: linear-gradient(90deg, var(--accent-teal), var(--accent-amber));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--warm-mid);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-top: 0.75rem;
+    }
+
+    .hero-college {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.2rem;
+      padding: 0.4rem 1.2rem;
+      border: 1px solid rgba(45,212,191,0.3);
+      border-radius: 100px;
+      background: rgba(45,212,191,0.05);
+      backdrop-filter: blur(8px);
+    }
+    .hero-college .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent-teal);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+    .hero-college span {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent-teal);
+      letter-spacing: 0.1em;
+    }
+
+    /* === CHOOSE PATH === */
+    .choose-label {
+      margin-top: 3.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--warm-mid);
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.8s 1.1s;
+    }
+    .choose-label.visible { opacity: 1; }
+
+    .path-cards {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.9s 1.2s, transform 0.9s 1.2s;
+    }
+    .path-cards.visible { opacity: 1; transform: translateY(0); }
+
+    .path-card {
+      position: relative;
+      width: 200px;
+      padding: 1.8rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      cursor: none;
+      text-decoration: none;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s, box-shadow 0.4s;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 0.8rem;
+    }
+    .path-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+      border-radius: inherit;
+    }
+    .path-card:hover { transform: translateY(-8px) scale(1.03); }
+
+    .path-card.product { --card-color: #F59E0B; }
+    .path-card.ml { --card-color: #2DD4BF; }
+
+    .path-card.product::before { background: radial-gradient(circle at 50% 100%, rgba(245,158,11,0.15), transparent 70%); }
+    .path-card.ml::before { background: radial-gradient(circle at 50% 100%, rgba(45,212,191,0.15), transparent 70%); }
+
+    .path-card:hover::before { opacity: 1; }
+    .path-card.product:hover { border-color: rgba(245,158,11,0.5); box-shadow: 0 20px 60px rgba(245,158,11,0.15); }
+    .path-card.ml:hover { border-color: rgba(45,212,191,0.4); box-shadow: 0 20px 60px rgba(45,212,191,0.15); }
+
+    .card-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+    .card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+    .card-desc {
+      font-size: 0.75rem;
+      color: var(--warm-mid);
+      line-height: 1.5;
+    }
+    .card-arrow {
+      margin-top: 0.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--card-color);
+      display: flex; align-items: center; gap: 0.4rem;
+      transition: gap 0.3s;
+    }
+    .path-card:hover .card-arrow { gap: 0.7rem; }
+
+    /* === SCROLL HINT === */
+    .scroll-hint {
+      position: fixed; bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: rgba(140,115,85,0.5);
+      text-transform: uppercase;
+      animation: fadeUpDown 2s ease-in-out infinite;
+      z-index: 10;
+    }
+    @keyframes fadeUpDown {
+      0%, 100% { opacity: 0.3; transform: translateX(-50%) translateY(0); }
+      50% { opacity: 0.7; transform: translateX(-50%) translateY(-6px); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<canvas id="bg-canvas"></canvas>
+<div class="noise"></div>
+
+<section id="landing">
+  <div class="photo-orb" id="orb">
+    <img src="assets/photo.jpg" alt="Sneha" />
+  </div>
+
+  <div class="hero-text" id="hero-text">
+    <div class="hero-name">
+      Sneha<span>Saravanan</span>
+    </div>
+    <div class="hero-sub">Software Engineer &nbsp;·&nbsp; ML Builder &nbsp;·&nbsp; Product Thinker</div>
+    <div class="hero-college">
+      <div class="dot"></div>
+      <span>Carnegie Mellon University · MISM '26</span>
+    </div>
+  </div>
+
+  <div class="choose-label" id="choose-label">Choose your lens</div>
+
+  <div class="path-cards" id="path-cards">
+    <a href="product.html" class="path-card product">
+      <div class="card-icon">📦</div>
+      <div class="card-title">Product &<br/>Strategy</div>
+      <div class="card-desc">PM thinking, feature adoption, roadmaps &amp; user impact</div>
+      <div class="card-arrow">Explore → </div>
+    </a>
+    <a href="ml.html" class="path-card ml">
+      <div class="card-icon">⚡</div>
+      <div class="card-title">ML / AI &<br/>Data</div>
+      <div class="card-desc">LLMs, MLOps, pipelines, models in production</div>
+      <div class="card-arrow">Explore → </div>
+    </a>
+  </div>
+</section>
+
+<div class="scroll-hint">↑ pick a path ↑</div>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  });
+  function animRing() {
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+  document.querySelectorAll('a,.path-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(2)'; ring.style.width = '60px'; ring.style.height = '60px'; });
+    el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.width = '36px'; ring.style.height = '36px'; });
+  });
+
+  // Canvas particle field
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * W;
+      this.y = Math.random() * H;
+      this.z = Math.random() * 1200 + 200;
+      this.vz = -(Math.random() * 0.5 + 0.3);
+      this.color = Math.random() > 0.5 ? '#2DD4BF' : '#F59E0B';
+      this.size = Math.random() * 2 + 0.5;
+    }
+    update() {
+      this.z += this.vz;
+      if (this.z < 1) this.reset();
+    }
+    draw() {
+      const scale = 800 / this.z;
+      const px = (this.x - W / 2) * scale + W / 2;
+      const py = (this.y - H / 2) * scale + H / 2;
+      const alpha = Math.min(1, (1200 - this.z) / 800);
+      const s = this.size * scale;
+      ctx.beginPath();
+      ctx.arc(px, py, Math.max(0.1, s), 0, Math.PI * 2);
+      ctx.fillStyle = this.color + Math.floor(alpha * 80).toString(16).padStart(2, '0');
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < 220; i++) particles.push(new Particle());
+
+  // Grid lines
+  function drawGrid() {
+    ctx.strokeStyle = 'rgba(45,212,191,0.03)';
+    ctx.lineWidth = 1;
+    const cols = 12, rows = 8;
+    for (let i = 0; i <= cols; i++) {
+      const x = (W / cols) * i;
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
+    for (let i = 0; i <= rows; i++) {
+      const y = (H / rows) * i;
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+  }
+
+  let mouseX = W/2, mouseY = H/2;
+  document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+
+  // Floating orbs on canvas
+  const orbs = [
+    { x: 0.15, y: 0.25, r: 180, color: '#2DD4BF', phase: 0 },
+    { x: 0.85, y: 0.7, r: 220, color: '#F59E0B', phase: 1.5 },
+    { x: 0.5, y: 0.9, r: 150, color: '#F43F5E', phase: 3 },
+  ];
+
+  let t = 0;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    drawGrid();
+
+    // Parallax orbs
+    const ox = (mouseX / W - 0.5) * 30;
+    const oy = (mouseY / H - 0.5) * 30;
+    orbs.forEach(orb => {
+      const cx = orb.x * W + ox * 0.3 + Math.sin(t * 0.4 + orb.phase) * 25;
+      const cy = orb.y * H + oy * 0.3 + Math.cos(t * 0.3 + orb.phase) * 20;
+      const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, orb.r);
+      g.addColorStop(0, orb.color + '18');
+      g.addColorStop(1, orb.color + '00');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(cx, cy, orb.r, 0, Math.PI * 2); ctx.fill();
+    });
+
+    particles.forEach(p => { p.update(); p.draw(); });
+    t += 0.01;
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  // Entrance animations
+  setTimeout(() => {
+    document.getElementById('orb').classList.add('visible');
+    document.getElementById('hero-text').classList.add('visible');
+    document.getElementById('choose-label').classList.add('visible');
+    document.getElementById('path-cards').classList.add('visible');
+  }, 200);
+</script>
+</body>
+</html>
