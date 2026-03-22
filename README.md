@@ -1,4 +1,4 @@
-# Sneha Saravanan — Portfolio (v2)
+# Sneha Saravanan — Portfolio 
 
 ## Structure
 ```
