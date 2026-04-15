@@ -21,8 +21,23 @@
     .contact-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px var(--accent-glow); }
     .card:hover { border-color: rgba(245,158,11,0.25); box-shadow: 0 12px 40px rgba(245,158,11,0.08); }
     .page-tag { background: rgba(245,158,11,0.12); color: var(--accent); border: 1px solid rgba(245,158,11,0.3); }
-    .download-btn { background: var(--accent); color: #0E0C0A; box-shadow: 0 8px 24px rgba(245,158,11,0.3); }
-    .download-btn:hover { box-shadow: 0 16px 40px rgba(245,158,11,0.4); }
+    
+    /* Hero Download Button Adjustment */
+    .download-btn { 
+      background: var(--accent); 
+      color: #0E0C0A; 
+      box-shadow: 0 8px 24px rgba(245,158,11,0.3);
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+    .download-btn:hover { box-shadow: 0 16px 40px rgba(245,158,11,0.4); transform: translateY(-2px); }
 
     /* Achievement badges */
     .achievement-row {
@@ -93,7 +108,6 @@
 
 <main>
 
-  <!-- HERO -->
   <section id="hero" class="page-hero">
     <span class="page-tag">Product & Strategy</span>
     <h1>Product<br/><em>Thinker.</em></h1>
@@ -104,10 +118,13 @@
       <a href="https://www.linkedin.com/in/snehasaravanan09/" target="_blank">🔗 LinkedIn</a>
       <a href="https://github.com/snehasaran09" target="_blank">💻 GitHub</a>
       <a href="https://medium.com/@sneha.saran09" target="_blank">✍️ Medium</a>
+      <br>
+      <a href="assets/Sneha_Saravanan_Product.pdf" download class="download-btn">
+        ⬇ Download Product CV
+      </a>
     </div>
   </section>
 
-  <!-- SUMMARY -->
   <section id="summary" class="section observe">
     <div class="section-label">Professional Summary</div>
 
@@ -125,7 +142,6 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section id="experience" class="section observe">
     <div class="section-label">Work Experience</div>
 
@@ -161,9 +177,23 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects" class="section observe">
     <div class="section-label">Projects & Launches</div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Audio Event Modeling & Speech Recognition System</div>
+          <div class="card-sub">Transformers · Sequence Modeling</div>
+        </div>
+        <div class="card-date">2025</div>
+      </div>
+      <ul>
+        <li>Defined and shipped an <strong class="hi">end-to-end audio sequence modeling system</strong> using encoder–decoder Transformers, translating complex temporal audio patterns into structured event representations</li>
+        <li>Owned the full feature engineering pipeline for audio signals, optimizing preprocessing for variable-length inputs to ensure <strong class="hi">scalable training and production-ready inference</strong></li>
+        <li>Iterated on decoding strategies (Beam Search vs Greedy) to maximize output quality, evaluated against sequence-level success metrics like <strong class="hi">Character Error Rate (CER)</strong></li>
+      </ul>
+    </div>
 
     <div class="card">
       <div class="winner-banner">🏆 1st Place — CMU ProdHacks AI Hackathon</div>
@@ -194,23 +224,8 @@
         <li>Achieved <strong class="hi">23%</strong> LLM licensing cost reduction by running A/B testing across 1 million users, confirmed statistically significant savings (p &lt; 0.05, two-sample t-test) with &lt;0.4 point rating degradation</li>
       </ul>
     </div>
-
-    <div class="card">
-      <div class="card-header">
-        <div>
-          <div class="card-title">LLM-Driven Conversational Analytics & Topic Intelligence</div>
-          <div class="card-sub">CMU · AI Engineering</div>
-        </div>
-        <div class="card-date">2025</div>
-      </div>
-      <ul>
-        <li>Achieved <strong class="hi">60%</strong> reduction in message review time by enhancing an LLM recap system integrating Zulip ORM with 4K-context windows — validated in user testing</li>
-        <li>Built <strong class="hi">340ms</strong> end-to-end latency by decoupling LLM inference from the application server via Flask, with cosine similarity–based topic drift detection on sentence embeddings</li>
-      </ul>
-    </div>
   </section>
 
-  <!-- EDUCATION -->
   <section id="education" class="section observe">
     <div class="section-label">Education</div>
 
@@ -233,7 +248,6 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills" class="section observe">
     <div class="section-label">Skills</div>
     <div class="card">
@@ -242,10 +256,11 @@
           <div style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; color:var(--warm-mid); margin-bottom:0.6rem;">AI / ML PRODUCT</div>
           <div class="skills-grid">
             <span class="pill highlight">RAG</span>
-            <span class="pill highlight">ML Optimization</span>
+            <span class="pill highlight">Transformers</span>
+            <span class="pill highlight">Sequence Modeling</span>
             <span class="pill highlight">A/B Testing</span>
             <span class="pill highlight">Drift Detection</span>
-            <span class="pill highlight">Model Evaluation</span>
+            <span class="pill highlight">Model Evaluation (CER)</span>
           </div>
         </div>
         <div>
@@ -269,7 +284,7 @@
             <span class="pill">Plotly</span>
             <span class="pill">AWS QuickSight</span>
             <span class="pill">Experiment Design</span>
-            <span class="pill">Funnel & Cohort Analysis</span>
+            <span class="pill">Feature Pipeline Design</span>
           </div>
         </div>
         <div>
@@ -286,7 +301,6 @@
     </div>
   </section>
 
-  <!-- ACHIEVEMENTS -->
   <section class="section observe">
     <div class="section-label">Achievements & Leadership</div>
     <div class="achievement-row">
@@ -296,7 +310,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" class="section observe">
     <div class="section-label">Get In Touch</div>
     <div class="contact-grid">
@@ -336,9 +349,6 @@
         </div>
       </a>
     </div>
-    <a href="assets/Sneha_Saravanan_Product.pdf" download class="download-btn">
-      ⬇ Download Product CV
-    </a>
   </section>
 
 </main>

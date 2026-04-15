@@ -20,8 +20,23 @@
     .contact-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px var(--accent-glow); }
     .card:hover { border-color: rgba(45,212,191,0.2); box-shadow: 0 12px 40px rgba(45,212,191,0.07); }
     .page-tag { background: rgba(45,212,191,0.1); color: var(--accent); border: 1px solid rgba(45,212,191,0.3); }
-    .download-btn { background: var(--accent); color: #0E0C0A; box-shadow: 0 8px 24px rgba(45,212,191,0.25); }
-    .download-btn:hover { box-shadow: 0 16px 40px rgba(45,212,191,0.35); }
+    
+    /* Hero Download Button Adjustment */
+    .download-btn { 
+      background: var(--accent); 
+      color: #0E0C0A; 
+      box-shadow: 0 8px 24px rgba(45,212,191,0.25);
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+    .download-btn:hover { box-shadow: 0 16px 40px rgba(45,212,191,0.35); transform: translateY(-2px); }
 
     /* Code-style badges */
     .tech-tag {
@@ -97,7 +112,6 @@
 
 <main>
 
-  <!-- HERO -->
   <section id="hero" class="page-hero">
     <span class="page-tag">ML · AI · Data Engineering</span>
     <h1>Engineer<br/><em>at Scale.</em></h1>
@@ -108,10 +122,13 @@
       <a href="https://www.linkedin.com/in/snehasaravanan09/" target="_blank">🔗 LinkedIn</a>
       <a href="https://github.com/snehasaran09" target="_blank">💻 GitHub</a>
       <a href="https://medium.com/@sneha.saran09" target="_blank">✍️ Medium</a>
+      <br>
+      <a href="assets/Sneha_Saravanan_ML.pdf" download class="download-btn">
+        ⬇ Download CV
+      </a>
     </div>
   </section>
 
-  <!-- SNAPSHOT -->
   <section class="section observe">
     <div class="section-label">At a Glance</div>
     <div class="stat-row">
@@ -122,7 +139,6 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section id="experience" class="section observe">
     <div class="section-label">Work Experience</div>
 
@@ -187,9 +203,34 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects" class="section observe">
     <div class="section-label">Projects</div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Audio Event Modeling & Speech Recognition System</div>
+          <div class="card-sub">Transformers · PyTorch</div>
+        </div>
+        <div class="card-date">2025</div>
+      </div>
+      <ul>
+        <li>Designed and trained an <strong class="hi">end-to-end audio sequence modeling system</strong> using encoder–decoder Transformers for speech recognition and event representation</li>
+        <li>Implemented <strong class="hi">multi-head self-attention, cross-attention, and positional encoding</strong>, enabling temporal pattern learning in audio signals</li>
+        <li>Built <strong class="hi">beam search and greedy decoding pipelines</strong> to convert model outputs into structured sequences, improving inference quality</li>
+        <li>Engineered <strong class="hi">data preprocessing and feature pipelines</strong> for audio signals, enabling scalable training on variable-length inputs</li>
+        <li>Evaluated and optimized performance using <strong class="hi">sequence-level metrics (e.g., CER)</strong> and iterative experimentation</li>
+        <li>Structured the system for <strong class="hi">production deployment</strong>, including modular inference and decoding components</li>
+      </ul>
+      <div class="tech-tags">
+        <span class="tech-tag">PyTorch</span>
+        <span class="tech-tag">Transformers</span>
+        <span class="tech-tag">Encoder-Decoder</span>
+        <span class="tech-tag">Beam Search</span>
+        <span class="tech-tag">CER</span>
+        <span class="tech-tag">Audio Processing</span>
+      </div>
+    </div>
 
     <div class="card">
       <div class="card-header">
@@ -281,7 +322,6 @@
     </div>
   </section>
 
-  <!-- EDUCATION -->
   <section id="education" class="section observe">
     <div class="section-label">Education</div>
 
@@ -304,7 +344,6 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills" class="section observe">
     <div class="section-label">Technical Skills</div>
     <div class="card">
@@ -324,8 +363,12 @@
           <div class="skills-grid">
             <span class="pill highlight">PyTorch</span>
             <span class="pill highlight">TensorFlow</span>
+            <span class="pill highlight">Transformers</span>
             <span class="pill highlight">Scikit-learn</span>
             <span class="pill">XGBoost</span>
+            <span class="pill">Speech Audio Processing</span>
+            <span class="pill">Encoder-Decoder</span>
+            <span class="pill">Beam Search</span>
             <span class="pill">Neural Networks</span>
             <span class="pill">Drift Detection</span>
             <span class="pill">A/B Testing</span>
@@ -374,7 +417,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" class="section observe">
     <div class="section-label">Get In Touch</div>
     <div class="contact-grid">
@@ -414,9 +456,6 @@
         </div>
       </a>
     </div>
-    <a href="assets/Sneha_Saravanan_ML.pdf" download class="download-btn">
-      ⬇ Download ML / AI CV
-    </a>
   </section>
 
 </main>
